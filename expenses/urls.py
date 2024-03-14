@@ -1,9 +1,10 @@
 from django.urls import path
 
-from expenses.views import expense_list
+from expenses.views import ExpenseListView, ExpenseDetailView
 
 app_name = "expenses"
 
 urlpatterns = [
-    path("", expense_list),
+    path("", ExpenseListView.as_view()),
+    path("<int:pk>/", ExpenseDetailView.as_view()),
 ]

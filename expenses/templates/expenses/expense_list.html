@@ -2,10 +2,29 @@
     Expenses
 </h1>
 <table border="1">
+    <tr>
+        <th>
+            #
+        </th>
+        <th>
+            Date
+        </th>
+        <th>
+            Title
+        </th>
+        <th>
+            Amount
+        </th>
+    </tr>
     {% for o in object_list %}
         <tr>
             <td>
-                #{{ o.id }}
+                <a href="/{{ o.id }}/">
+                    #{{ o.id }}
+                </a>
+            </td>
+            <td>
+                {{ o.date }}
             </td>
             <td>
                 {{ o.title }}

@@ -3,7 +3,7 @@ import random
 from django.core.management.base import BaseCommand
 from faker import Faker
 
-from expenses.models import Expense
+from expenses.models import Expense, Category
 
 import tqdm
 
@@ -16,10 +16,17 @@ class Command(BaseCommand):
 
     def handle(self, n, *args, **options):
         faker = Faker()
+
+        Category.objects.all().delete()
+        Expense.objects.all().delete()
+
+        categories = [Category.objects.create(name=faker.sentence()) for i in range(8)]
         for i in tqdm.tqdm(range(n)):
             o = Expense(
+                category=random.choice(categories),
                 title=faker.sentence(),
                 amount=round(random.randint(1000, 9999) / 10, 2),
                 date=faker.date_this_year(),
+                description="\n".join(faker.paragraph() for i in range(3)),
             )
             o.save()

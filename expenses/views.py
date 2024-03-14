@@ -1,13 +1,16 @@
 from django.shortcuts import render
+from django.views.generic import ListView, DetailView
 
 from expenses.models import Expense
 
 
-def expense_list(request):
-    return render(
-        request,
-        "expenses/expense_list.html",
-        {
-            "object_list": Expense.objects.all(),
-        },
-    )
+class ExpenseListView(ListView):
+    model = Expense
+    ordering = "-date"
+
+
+class ExpenseDetailView(DetailView):
+    model = Expense
+
+
+
