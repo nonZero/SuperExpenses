@@ -1,0 +1,20 @@
+<h1>
+    Expenses
+</h1>
+<table border="1">
+    {% for o in object_list %}
+        <tr>
+            <td>
+                #{{ o.id }}
+            </td>
+            <td>
+                {{ o.title }}
+            </td>
+            <td>
+                ${{ o.amount }}
+            </td>
+        </tr>
+    {% endfor %}
+</table>
+
+

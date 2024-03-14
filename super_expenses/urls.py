@@ -18,19 +18,9 @@ import random
 
 from django.contrib import admin
 from django.http import HttpRequest, HttpResponse
-from django.urls import path
-
-
-def my_view(request: HttpRequest):
-    return HttpResponse("Hello world!!")
-
-
-def random_number(request: HttpRequest):
-    return HttpResponse(f"The magic number is {random.randint(0, 100)}!!!!")
-
+from django.urls import path, include
 
 urlpatterns = [
-    path("", my_view),
-    path("rnd/", random_number),
+    path("", include("expenses.urls")),
     path("admin/", admin.site.urls),
 ]
