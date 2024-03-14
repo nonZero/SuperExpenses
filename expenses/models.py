@@ -14,6 +14,7 @@ class Expense(models.Model):
     amount = models.DecimalField(max_digits=10, decimal_places=2)
     date = models.DateField()
     description = models.TextField(blank=True)
+    more_data = models.JSONField()
 
     def __str__(self):
         return f"{self.title} ${self.amount}"
